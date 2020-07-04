@@ -114,7 +114,7 @@ class testViewController: UIViewController {
             }
         }
         else if(roundCounter==6){
-        if((negWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("b") && self.wordState==0)){
+        if((posWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("b") && self.wordState==0)){
                    print("correct")
                    stageCounter+=1
                     let now=Date()
@@ -128,7 +128,7 @@ class testViewController: UIViewController {
         }else if(roundCounter==7){
             let item = combined[stageCounter]
             if(words.contains(item)){
-                if(negWords.contains(item)) {
+                if(posWords.contains(item)) {
                     print("correct")
                     let now = Date()
                     t7Times.append(now.timeIntervalSince(start))
@@ -230,7 +230,7 @@ class testViewController: UIViewController {
                 wrongLbl.isHidden = false
             }
         }else if(roundCounter==6){
-            if((posWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("w") && self.wordState==0)){
+            if((negWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("w") && self.wordState==0)){
                 print("correct")
                 stageCounter+=1
                 let now=Date()
@@ -244,7 +244,7 @@ class testViewController: UIViewController {
         }else if(roundCounter==7){
             let item = combined[stageCounter]
             if(words.contains(item)){
-                if(posWords.contains(item)) {
+                if(negWords.contains(item)) {
                     print("correct")
                     let now = Date()
                     t7Times.append(now.timeIntervalSince(start))
@@ -384,7 +384,7 @@ class testViewController: UIViewController {
             self.wordCount = 0
             self.btn1.setTitle("N/A", for: .normal)
             self.btn2.setTitle("P/E", for: .normal)
-            self.prompt.text = "Press 1 if the word below seems negative or the person seems African-American and 2 if it the word seems positive or if the person seems European-American."
+            self.prompt.text = "Press N/A if the word below seems negative or the person seems African-American or P/E if it the word seems positive or if the person seems European-American."
             if(wordState==0){
                 setImg(img: images[stageCounter])
                 self.imgCount+=1
@@ -423,9 +423,9 @@ class testViewController: UIViewController {
             self.stageCounter = 0
             self.imgCount = 0
             self.wordCount = 0
-            self.btn1.setTitle("P/E", for: .normal)
-            self.btn2.setTitle("N/A", for: .normal)
-            self.prompt.text = "Press 1 if the word below seems positive or if the person seems European-American and 2 if  the word seems negative or the person seems African-American"
+            self.btn1.setTitle("P/A", for: .normal)
+            self.btn2.setTitle("N/E", for: .normal)
+            self.prompt.text = "Press P/A if the word below seems positive or if the person seems African-American and N/E if  the word seems negative or the person seems European-American"
             if(wordState==0){
                 setImg(img: images[stageCounter])
                 self.imgCount+=1
@@ -433,7 +433,7 @@ class testViewController: UIViewController {
                 setWord(word: words[stageCounter])
                 self.wordCount+=1
             }
-            showAlert(msg: "In the next section, you'll have to classify faces and words in the same manner as the 3rd section, but with one catch: the position of the buttons will be changed. Be careful. This section will be timed.", btnMsg: "Okay, understood.")
+            showAlert(msg: "In the next section, you'll have to classify faces and words in the same manner as the 3rd section. But, be careful and read the instructions above before pressing the button. This section will be timed.", btnMsg: "Okay, understood.")
         }else if(from==6){
             shuffleSets()
             self.roundCounter+=1
@@ -448,15 +448,13 @@ class testViewController: UIViewController {
                 setWord(word: words[stageCounter])
                 self.wordCount+=1
             }
-            showAlert(msg: "The next section will also be timed.", btnMsg: "Okay, understood.")
+            showAlert(msg: "The last section will be the same as before and also be timed.", btnMsg: "Okay, understood.")
         }else if(from==7){
             print("finished")
             print(t3Times.count,t4Times.count,t6Times.count,t7Times.count)
             res = calc(t3: t3Times, t4: t4Times, t6: t6Times, t7: t7Times)
             self.performSegue(withIdentifier: "results", sender: nil)
-            
         }
-        
     }
     func showAlert(msg:String,btnMsg:String){
         let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertController.Style.alert)
