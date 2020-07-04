@@ -114,7 +114,7 @@ class testViewController: UIViewController {
             }
         }
         else if(roundCounter==6){
-        if((posWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("b") && self.wordState==0)){
+        if((negWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("w") && self.wordState==0)){
                    print("correct")
                    stageCounter+=1
                     let now=Date()
@@ -128,7 +128,7 @@ class testViewController: UIViewController {
         }else if(roundCounter==7){
             let item = combined[stageCounter]
             if(words.contains(item)){
-                if(posWords.contains(item)) {
+                if(negWords.contains(item)) {
                     print("correct")
                     let now = Date()
                     t7Times.append(now.timeIntervalSince(start))
@@ -140,7 +140,7 @@ class testViewController: UIViewController {
                     wrongLbl.isHidden = false
                 }
             }else{
-                if(item.hasPrefix("b")){
+                if(item.hasPrefix("w")){
                     print("correct")
                     stageCounter+=1
                     let now = Date()
@@ -230,7 +230,7 @@ class testViewController: UIViewController {
                 wrongLbl.isHidden = false
             }
         }else if(roundCounter==6){
-            if((negWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("w") && self.wordState==0)){
+            if((posWords.contains(words[stageCounter]) && self.wordState==1)||(images[stageCounter].hasPrefix("b") && self.wordState==0)){
                 print("correct")
                 stageCounter+=1
                 let now=Date()
@@ -244,7 +244,7 @@ class testViewController: UIViewController {
         }else if(roundCounter==7){
             let item = combined[stageCounter]
             if(words.contains(item)){
-                if(negWords.contains(item)) {
+                if(posWords.contains(item)) {
                     print("correct")
                     let now = Date()
                     t7Times.append(now.timeIntervalSince(start))
@@ -252,11 +252,11 @@ class testViewController: UIViewController {
                     stageCounter+=1
                     stageUp(stageCounter: stageCounter,round:roundCounter)
                 }else{
-                    print("wrong")
+                    print("b")
                     wrongLbl.isHidden = false
                 }
             }else{
-                if(item.hasPrefix("w")){
+                if(item.hasPrefix("b")){
                     print("correct")
                     stageCounter+=1
                     let now = Date()
